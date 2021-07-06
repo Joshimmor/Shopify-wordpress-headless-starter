@@ -5,6 +5,7 @@ import MobileMenu from "./MobileMenu";
 const NavWrapper = {
     display: "flex",
     flexDirection: "row",
+    backgroundColor: "white",
     height: "10%",
     width: "100%",
     position: "fixed",
