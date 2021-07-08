@@ -1,8 +1,9 @@
 import Head from 'next/head'
-import HeroSection from '../Comps/HeroSection'
 import styles from '../styles/Home.module.css'
+import {useState} from "react"
 
-export default function Home() {
+export default function Cart() {
+    const [finder,setFinder] = useState("");
   return (
     <div className={styles.container}>
       <Head>
@@ -11,7 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-      <HeroSection/>
+      <p>cart stuff</p>
       </main>
     </div>
   )

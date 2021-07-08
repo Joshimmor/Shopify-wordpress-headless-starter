@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useState } from 'react';
+import {WidthContext} from "../Context/WidthContext";
 import MobileMenu from "./MobileMenu";
 
 const NavWrapper = {
@@ -54,26 +55,36 @@ const Navbar = (props) => {
                 </a>
             </Link>
         </div>
-        <ul style={props.size.width < 600  ? mobileMenuWrapper : menuWrapper}>
-            <l1 style={menuItems}>
-                <Link href="/">
-                    Shop
-                </Link>
-            </l1>
-            <l1 style={menuItems}>
-                <Link href="/">
-                    Blog
-                </Link>
-            </l1>
-            <l1 style={menuItems}>
-                <Link href="/">
-                    Cart
-                </Link>
-            </l1>
-        </ul>
-        <div style={props.size.width > 600  ? mobileMenuWrapper : menuButton}>
+        <WidthContext.Consumer>{(context) => {
+           return(
+                        <ul style={context.innerWidth < 600  ? mobileMenuWrapper : menuWrapper}>
+                        <l1 style={menuItems}>
+                            <Link href="/shop">
+                                Shop
+                            </Link>
+                        </l1>
+                        <l1 style={menuItems}>
+                            <Link href="/">
+                                Blog
+                            </Link>
+                        </l1>
+                        <l1 style={menuItems}>
+                            <Link href="/cart">
+                                Cart
+                            </Link>
+                        </l1>
+                    </ul>
+            )
+        }}
+        </WidthContext.Consumer>
+        <WidthContext.Consumer>{(context) => {
+            return(
+                <div style={context.innerWidth > 600  ? mobileMenuWrapper : menuButton}>
                 <MobileMenu/>
         </div>
+            )
+        }}
+        </WidthContext.Consumer>
     </div>
 )};
 

@@ -11,7 +11,7 @@ const MobileMenu = () => {
             <div className={ styles.bar1 }></div>
             <div className={ styles.bar2 }></div>
             <div className={styles.bar3 }></div>
-            <MenuSlider menuButton={menuButton}/>
+            <MenuSlider menuButton={menuButton}  setMenu={setMenu}/>
         </div>
     )
 }

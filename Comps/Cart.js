@@ -1,4 +1,3 @@
-import Link from "next/link";
 
 const cartSliderStyles = {
     position:"absolute",
@@ -8,7 +7,7 @@ const cartSliderStyles = {
     height:"70vh",
     width: "100%",
     backgroundColor: "white",
-    transition: " all 0.2s ease-in-out",
+    transition: " all 0.3s ease-in-out",
     zIndex: "3"
 }
 const cartSliderClosed = {
@@ -26,13 +25,16 @@ const cartControls = {
     flexDirection: "row",
     height:"20%",
     width: "100%",
+    alignItem:"end"
   
 }
 
-const Cart = ({cartButton}) => {
+const Cart = ({cartButton, setCart}) => {
     return(
         <div style={cartButton ?  cartSliderClosed: cartSliderStyles}>
-           <div className={cartControls}></div>
+           <div className={cartControls}>
+               <a className="" onClick={()=>setCart(!cartButton)}>Close</a>
+           </div>
         </div>
     )
 }

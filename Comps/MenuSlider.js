@@ -38,28 +38,26 @@ const menuItems = {
     fontWeight: "bold",
     textDecoration: "none"
 }
-const MenuSlider = ({menuButton}) => {
-    const [cartButton, setCart] = useState(true);
+const MenuSlider = ({menuButton,  setMenu}) => {
     return(
         <div style={menuButton ?  MenuSliderClosed: MenuSliderStyles}>
            <ul style={menuButton ?  MenuClosed: menuBox}>
             <l1 style={menuItems}>
-                <Link href="/">
+                <Link href="/shop" onClick={()=>  setMenu(!menuButton)}>
                     Shop
                 </Link>
             </l1>
             <l1 style={menuItems}>
-                <Link href="/">
+                <Link href="/" onClick={()=>  setMenu(!menuButton)}>
                     Blog
                 </Link>
             </l1>
             <l1 style={menuItems}>
-                <a onClick={()=>{setCart(!cartButton)}}>
+                <Link href="/cart" onClick={()=>  setMenu(!menuButton)}>
                     Cart
-                </a>
+                </Link>
             </l1>
         </ul>
-        <Cart cartButton={cartButton}/>
         </div>
     )
 }
