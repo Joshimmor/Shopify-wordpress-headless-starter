@@ -1,0 +1,44 @@
+.ShopItem{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 150px;
+    margin: 10px 10px 10px 10px ;
+}
+.ShopItem > img {
+    height:inherit;
+    width: inherit;
+}
+.ShopNavi{
+    display: flex;
+    flex-direction: column;
+    height: 10vh;
+    width: 85vw;
+}
+.ShopNaviRow{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.break{
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: grey;
+}
+.Shop{
+    display: flex;
+    flex-direction: column;
+    width: 85vw;
+    overflow-x: hidden; 
+    padding-top: 10vh;
+}
+.ShopDisplay{
+    display: flex;
+    flex-direction: row;
+    width: 85vw;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    justify-content: center;
+}

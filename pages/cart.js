@@ -1,5 +1,7 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import {CartContext} from '../Context/CartContext';
+import LiveCart from "../Comps/LiveCart"
+import styles from '../styles/Home.module.css';
 
 export default function Cart() {
   return (
@@ -10,7 +12,13 @@ export default function Cart() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-      <p>cart stuff</p>
+      <CartContext.Consumer>
+            {(context)=> {
+              return(
+                <LiveCart client={context.client} cartId={context.cartId} lineItems ={context.lineItems}/>
+              )
+            }}
+      </CartContext.Consumer>
       </main>
     </div>
   )

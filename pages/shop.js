@@ -1,8 +1,11 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import {useState} from "react"
+import {ShopifyClientContext} from "../Context/ShopifyClientContext";
+import LiveShop from '../Comps/LiveShop';
 
-export default function Cart() {
+
+export default function Shop() {
     const [finder,setFinder] = useState("");
   return (
     <div className={styles.container}>
@@ -12,7 +15,13 @@ export default function Cart() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-      <p>cart stuff</p>
+      <ShopifyClientContext.Consumer>
+            {(context) => {
+              return(
+                <LiveShop store={context.store}  sortBy={context.sortBy}/>
+              )
+            }}
+      </ShopifyClientContext.Consumer>
       </main>
     </div>
   )
