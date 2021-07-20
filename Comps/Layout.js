@@ -1,6 +1,7 @@
 
 import Navbar from "./Navbar";
 import { useState, useEffect } from 'react';
+import Footer from "./Footer";
 
 const layoutWrapper = {
     display: "flex",
@@ -14,6 +15,7 @@ const Layout = ({children}) => {
         <div style={layoutWrapper}>
             <Navbar size={useWindowSize()}/>
             {children}
+            <Footer/>
         </div>
     )
 }

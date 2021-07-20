@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { Component } from 'react';
 import styles from "../styles/store.module.css";
+import {WidthContext} from "../Context/WidthContext";
 
 export default class LiveShop extends Component {
     
@@ -19,35 +20,39 @@ export default class LiveShop extends Component {
         console.log(this.state.SearchStore)
        // console.log(this.props.store)
         return (
+            <WidthContext.Consumer>{(context) => {
+                return (
             <div className={styles.Shop}>
                 <ShopNaviBar handleChange={this.handleChange}  sortBy={this.props.sortBy} SearchStore={this.state.SearchStore} />
-                <div className={styles.ShopDisplay}>
+                <div className={context.innerWidth > 600  ? styles.ShopDisplay : styles.MobileShopDisplay}>
                         {this.state.SearchStore.length > 2 ? 
                         this.props.store.filter(n => n.title.toUpperCase().indexOf(this.state.SearchStore.toUpperCase()) >= 0).map((n,i) => {
                         let img  = n.images[0];
                         return(
-                            <ShopItem srcPhoto={img.src} title={n.title} key={i}/>
+                            <ShopItem innerWidth={context.innerWidth} srcPhoto={img.src} title={n.title} key={i}/>
                         )
                     }) 
                         : this.props.store.map((n,i) => {
                         let img  = n.images[0];
                         return(
-                            <ShopItem srcPhoto={img.src} title={n.title} key={i}/>
+                            <ShopItem innerWidth={context.innerWidth} srcPhoto={img.src} title={n.title} key={i}/>
                         )
                     })}
                 </div>
-               
             </div>
+                )}
+                }
+            </WidthContext.Consumer>   
         )
     }
 };
  
-function ShopItem({srcPhoto,title}) {
+function ShopItem({srcPhoto,title, innerWidth}) {
      return (
-         <div className={styles.ShopItem}>
-            <img src={srcPhoto} alt={title}/>
-            <h4 >{title}</h4>
-         </div>
+                 <div className={innerWidth > 600  ? styles.ShopItem : styles.MobileShopItem}>
+                    <img src={srcPhoto} alt={title}/>
+                    <h4 >{title}</h4>
+                 </div>
      )
  }
   function ShopNaviBar({handleChange,sortBy}){
@@ -63,10 +68,7 @@ function ShopItem({srcPhoto,title}) {
   function SearchBar({handleChange,sortBy}){
       
       return(
-        <form>
-                <label>
-                <input type="text" onChange={event => handleChange(event.target.value)}  placeholder="Search" />
-                </label>
+        <form className={styles.ShopForm}>
                 <label>
                 <select name="sort" id="product-select" onChange={event => sortBy(event.target.value)}>
                     <option value="BEST_SELLING">Sort By</option>
@@ -76,7 +78,9 @@ function ShopItem({srcPhoto,title}) {
                     <option value="CREATED_AT">Newest</option>
                 </select>
                 </label>
-               
+                <label>
+                <input type="text" onChange={event => handleChange(event.target.value)}  placeholder="Search" />
+                </label>
         </form>
       )
   }
