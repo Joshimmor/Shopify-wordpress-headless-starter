@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import Link from "next/link";
 import React, { Component } from 'react';
 import styles from "../styles/store.module.css";
 import {WidthContext} from "../Context/WidthContext";
@@ -29,13 +30,16 @@ export default class LiveShop extends Component {
                         this.props.store.filter(n => n.title.toUpperCase().indexOf(this.state.SearchStore.toUpperCase()) >= 0).map((n,i) => {
                         let img  = n.images[0];
                         return(
-                            <ShopItem innerWidth={context.innerWidth} srcPhoto={img.src} title={n.title} key={i}/>
+                                <ShopItem id={n.id} innerWidth={context.innerWidth} srcPhoto={img.src} title={n.title} key={i}/>
+                            
                         )
                     }) 
                         : this.props.store.map((n,i) => {
                         let img  = n.images[0];
                         return(
-                            <ShopItem innerWidth={context.innerWidth} srcPhoto={img.src} title={n.title} key={i}/>
+                           
+                                <ShopItem id={n.id} innerWidth={context.innerWidth} srcPhoto={img.src} title={n.title} key={i}/>
+                        
                         )
                     })}
                 </div>
@@ -47,12 +51,14 @@ export default class LiveShop extends Component {
     }
 };
  
-function ShopItem({srcPhoto,title, innerWidth}) {
+function ShopItem({srcPhoto,title, innerWidth, id}) {
      return (
+        <Link  href={"/shop/" + id} passHref >
                  <div className={innerWidth > 600  ? styles.ShopItem : styles.MobileShopItem}>
                     <img src={srcPhoto} alt={title}/>
                     <h4 >{title}</h4>
                  </div>
+        </Link>         
      )
  }
   function ShopNaviBar({handleChange,sortBy}){

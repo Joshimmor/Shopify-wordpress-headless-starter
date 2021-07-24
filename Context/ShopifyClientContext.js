@@ -48,6 +48,7 @@ export default class ShopifyClientContextProvider extends Component {
             sortKey: "BEST_SELLING",
         }).then((products) => {
         // Do something with the products
+        //console.log(products)
         this.setState({store : products});
        });
     }
